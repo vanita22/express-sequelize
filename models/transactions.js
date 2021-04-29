@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'account_ori'
       });
 
-      this.belongsTo(models.transaction_type, {
+      this.belongsTo(models.transactions_types, {
         foreignKey: ' transaction_type'
-      })
+      });
     } 
   };
   transactions.init({

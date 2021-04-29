@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.accountTypes, {
         foreignKey: 'type'
       });
+      this.hasMany(models.transactions, {
+        foreignKey: 'account_ori'
+      });
     }
   };
   account.init({
