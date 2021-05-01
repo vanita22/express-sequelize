@@ -11,14 +11,14 @@ module.exports = {
       account_ori: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'account',
+          model: 'accounts',
           key: 'id'
         }
       },
       account_des: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'account',
+          model: 'accounts',
           key: 'id'
         }
       },

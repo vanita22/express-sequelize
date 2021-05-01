@@ -8,28 +8,40 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-const {accountTypes, clients, account} = require('./models');
+const {accountTypes, clients, accounts, transactions, transactions_types} = require('./models');
 
 app.use(express.urlencoded({extended: false}));
 
 //read
 app.get("/account_types", async (req,res) => {
-    let result = await accountTypes.findAll({include: [{model: account}]});
+    let result = await accountTypes.findAll({include: [{model: accounts}]});
     res.send(console.log(JSON.stringify(result.map(accountT => accountT.get({plain: true})))));
     //res.render("account_types", {accountTypes: result});
 });
 
-app.get("/account", async (req,res) => {
-    let result = await account.findAll({include: [{model: accountTypes}, {model: clients}]});
+app.get("/accounts", async (req,res) => {
+    let result = await accounts.findAll({include: [{model: accountTypes}, {model: clients}, {model: transactions}]});
     res.send(JSON.stringify(result));
     //res.render("account", {account: result});
 });
 
 app.get("/clients", async (req,res) => {
-    let result = await clients.findAll({include: [{model: account}]});
+    let result = await clients.findAll({include: [{model: accounts}]});
     //let result = await account.findAll({raw: true, include: ["clients"], nest: true});
     console.log(JSON.stringify(result.map(client => client.get({plain: true}))));
     res.render("clients");
+});
+
+app.get("/transactions", async (req,res) => {
+    let result = await transactions.findAll({include: [{model: accounts}]});
+    res.send(console.log(JSON.stringify(result.map(tran => tran.get({plain: true})))));
+    //res.render("account_types", {accountTypes: result});
+});
+
+app.get("/transactions_types", async (req,res) => {
+    let result = await transactions_types.findAll({include: [{model: transactions}]});
+    res.send(JSON.stringify(result));
+    //res.render("account", {account: result});
 });
 
 /*app.get("/accountTypes", async (req,res) => {

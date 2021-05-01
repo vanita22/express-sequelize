@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class account extends Model {
+  class accounts extends Model {
     static associate(models) {
       this.belongsTo(models.clients, {
         foreignKey: 'client_id'
@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
-  account.init({
+  accounts.init({
     acount_no: DataTypes.INTEGER,
     client_id: DataTypes.INTEGER,
     balance: DataTypes.DECIMAL,
     type: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'account',
+    modelName: 'accounts',
     underscored: true
   });
-  return account;
+  return accounts;
 };

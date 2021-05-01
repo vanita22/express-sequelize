@@ -5,12 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class transactions extends Model {
     static associate(models) {
-      this.belongsTo(models.account, {
+      this.belongsTo(models.accounts, {
         foreignKey: 'account_ori'
       });
 
       this.belongsTo(models.transactions_types, {
-        foreignKey: ' transaction_type'
+        foreignKey: 'transaction_type'
       });
     } 
   };
@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     trans_date: DataTypes.DATE
   }, {
     sequelize,
+    underscored: true,
     modelName: 'transactions',
   });
   return transactions;

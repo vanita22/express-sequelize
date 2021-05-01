@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {
     sequelize,
+    underscored: true,
     modelName: 'transactions_types',
   });
   return transactions_types;
