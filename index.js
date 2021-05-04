@@ -19,7 +19,7 @@ app.get("/account_types", async (req,res) => {
     //res.render("account_types", {accountTypes: result});
 });
 
-app.get("/accounts", async (req,res) => {
+app.get("/account", async (req,res) => {
     let result = await accounts.findAll({include: [{model: accountTypes}, {model: clients}, {model: transactions}]});
     res.send(JSON.stringify(result));
     //res.render("account", {account: result});

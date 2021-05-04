@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   accounts.init({
-    acount_no: DataTypes.INTEGER,
+    account_no: DataTypes.INTEGER,
     client_id: DataTypes.INTEGER,
     balance: DataTypes.DECIMAL,
     type: DataTypes.INTEGER
