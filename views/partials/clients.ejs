@@ -1,0 +1,48 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>           
+            <th scope="col">Email</th>
+            <th scope="col">Teléfono</th> 
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% clients.forEach( (cli) => { %>
+            <tr>
+                <th scope="row"><%= cli.id %></th>
+                <td><%= cli.first_name %></td>
+                <td><%= cli.last_name %></td>
+                <td><%= cli.email %></td>
+                <td><%= cli.telephone %></td>
+                <td><a href="/clients/delete/<%= cli.id %>" class="btn btn-danger">Eliminar</a></td>
+            </tr>
+        <% }) %>
+    </tbody>
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>           
+            <th scope="col">Email</th>
+            <th scope="col">Teléfono</th>  
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% clients.find( (cli) => { %>
+            <tr>
+                <th scope="row"><%= cli.id %></th>
+                <td><input type="text" name="first_name" class="form-control" value="<%= cli.first_name %>"></td>
+                <td><input type="text" name="last_name" class="form-control" value="<%= cli.last_name %>"></td>
+                <td><input type="text" name="email" class="form-control" value="<%= cli.email %>"></td>
+                <td><input type="number" name="telephone" class="form-control" value="<%= cli.telephone %>"></td>
+                <td><a href="/clients/update/<%= cli.id %>" class="btn btn-warning">Actualizar</a></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
