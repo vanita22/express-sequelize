@@ -34,14 +34,16 @@
     </thead>
     <tbody>
         <% clients.find( (cli) => { %>
-            <tr>
-                <th scope="row"><%= cli.id %></th>
-                <td><input type="text" name="first_name" class="form-control" value="<%= cli.first_name %>"></td>
-                <td><input type="text" name="last_name" class="form-control" value="<%= cli.last_name %>"></td>
-                <td><input type="text" name="email" class="form-control" value="<%= cli.email %>"></td>
-                <td><input type="number" name="telephone" class="form-control" value="<%= cli.telephone %>"></td>
-                <td><a href="/clients/update/<%= cli.id %>" class="btn btn-warning">Actualizar</a></td>
-            </tr>
+            <form action="/clients/update/<%= cli.id %>" method="POST">
+                <tr>
+                    <th scope="row"><%= cli.id %></th>
+                    <td><input type="text" name="first_name" class="form-control" value="<%= cli.first_name %>"></td>
+                    <td><input type="text" name="last_name" class="form-control" value="<%= cli.last_name %>"></td>
+                    <td><input type="text" name="email" class="form-control" value="<%= cli.email %>"></td>
+                    <td><input type="number" name="telephone" class="form-control" value="<%= cli.telephone %>"></td>
+                    <td><button type="submit" class="btn btn-warning">Actualizar</button></td>
+                </tr>
+            </form>
         <% }) %>
     </tbody>
 </table>

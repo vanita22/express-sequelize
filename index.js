@@ -53,12 +53,12 @@ app.get("/transactions_types", async (req,res) => {
 
 //create
 app.post("/account_types", async (req, res) => {
-    const {name, description, create_at, update_at} = req.body
+    const {name, description, created_at, updated_at} = req.body
     try{
         console.log(req.body);
-        let result = await accountTypes.create({name, description});
+        let result = await accountTypes.create({name, description, created_at: Date(), updated_at: Date()});
         console.log(result);
-        console.log(res.send("se ha agregado un tipo de cuenta"));
+        res.send("se ha agregado un tipo de cuenta");
     } catch(error) {
         console.log(error);
         res.status(400).send("no se ha podido agregar");
@@ -66,13 +66,14 @@ app.post("/account_types", async (req, res) => {
 });
 
 //update
-app.put("/clients", async (req, res) => {
-    const {first_name, last_name, email, telephone, create_at, update_at} = req.body
+app.post("/clients/update/:id", async (req, res) => {
+    const id = req.params.id;
+    const {first_name, last_name, email, telephone, created_at, updated_at} = req.body
     try{
         console.log(req.body);
-        let result = await clients.update(first_name, last_name, email, telephone);
+        let result = await clients.update({first_name, last_name, email, telephone}, {where: {id}});
         console.log(result);
-        res.send("se ha actualizado el cliente");
+        res.redirect("/clients");
     } catch(error) {
         console.log(error);
         res.status(400).send("no se ha podido agregar");
@@ -80,16 +81,15 @@ app.put("/clients", async (req, res) => {
 });
 
 //delete
-app.delete("/clients", async (req, res) => {
-    const {first_name, last_name, email, telephone, create_at, update_at} = req.body
+app.get("/clients/delete/:id", async (req, res) => {
+    const id = req.params.id;
     try{
-        console.log(req.body);
-        let result = await clients.delete(req.body);
+        let result = await clients.destroy({where: {id}});
         console.log(result);
-        res.send("se ha eliminado el cliente");
+        res.redirect("/clients");
     } catch(error) {
         console.log(error);
-        res.status(400).send("no se ha podido agregar");
+        res.status(400).send("no se ha podido eliminar");
     }    
 });
 

@@ -10,6 +10,7 @@ module.exports = {
       },
       account_ori: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'accounts',
           key: 'id'
@@ -17,6 +18,7 @@ module.exports = {
       },
       account_des: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'accounts',
           key: 'id'

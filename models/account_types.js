@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
     modelName: 'accountTypes',
     tableName: "account_types",
-    timestamps: false
+    timestamps: true
   });
   return accountTypes;
 };

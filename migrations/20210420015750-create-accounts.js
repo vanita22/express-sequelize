@@ -13,6 +13,7 @@ module.exports = {
       },
       client_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'clients',
           key: 'id'
